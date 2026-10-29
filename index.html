@@ -217,6 +217,8 @@ img { max-width: 100%; }
 .itens li.nao { color: #8a8387; text-decoration: line-through; }
 .itens li.nao::before { content: "✕"; background: rgba(227, 36, 27, .16); color: var(--red-hi); }
 .itens em { font-style: normal; font-size: .62rem; font-weight: 800; letter-spacing: .1em; padding: 3px 7px; border-radius: 4px; background: rgba(227, 36, 27, .2); color: #ff8a80; align-self: center; }
+.itens li.alerta { color: #f5d38a; }
+.itens li.alerta::before { content: "!"; background: rgba(241, 181, 68, .18); color: var(--gold); }
 .itens .sep { grid-template-columns: 1fr; text-align: center; font-weight: 800; font-size: 1.15rem; margin-top: 6px; }
 .itens .sep::before { display: none; }
 .plano--top { background: linear-gradient(180deg, #2a0c0a, #160b0c 40%, var(--card)); border: 2px solid var(--red); box-shadow: 0 0 0 6px rgba(227, 36, 27, .12), 0 30px 80px rgba(227, 36, 27, .25); }
@@ -308,6 +310,18 @@ footer .logo { font-size: 34px; }
 .janela-preco b { color: var(--gold); font-size: 1.5rem; }
 .janela .btn--gray { min-height: 50px; font-size: .95rem; background: transparent; border: 1px solid rgba(245, 240, 232, .25); }
 .aviso-link { font-size: .82rem; color: var(--gold); }
+
+
+/* tempo da promoção */
+.promo-tempo { display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; margin: 16px auto 0; padding: 10px 16px; width: fit-content; max-width: 100%; border-radius: 10px; background: #000; border: 1px solid rgba(227, 36, 27, .5); font-weight: 700; font-size: .95rem; }
+.promo-tempo b { font-family: var(--disp); font-weight: 400; font-size: 1.5rem; letter-spacing: .04em; background: var(--red); padding: 0 10px; border-radius: 5px; font-variant-numeric: tabular-nums; }
+/* avisos de compra */
+.compra-aviso { position: fixed; left: max(14px, env(safe-area-inset-left, 0px)); bottom: calc(14px + env(safe-area-inset-bottom, 0px)); z-index: 90; display: flex; align-items: center; gap: 12px; max-width: min(340px, calc(100vw - 28px)); padding: 12px 16px 12px 12px; border-radius: 12px; background: rgba(27, 24, 28, .97); border: 1px solid var(--line); border-left: 4px solid var(--green); box-shadow: 0 16px 40px rgba(0, 0, 0, .6); font-size: .88rem; animation: avisoEntra .5s var(--spring); }
+.compra-aviso b { display: block; }
+.compra-aviso span { color: var(--mut); }
+.compra-ic { width: 38px; height: 38px; flex: none; border-radius: 50%; display: grid; place-items: center; background: rgba(63, 209, 122, .16); color: var(--green); }
+.compra-ic svg { width: 20px; height: 20px; }
+@keyframes avisoEntra { from { opacity: 0; transform: translateY(20px) scale(.95); } to { opacity: 1; transform: none; } }
 
 /* entrada em cena ao rolar */
 @supports (animation-timeline: view()) {
@@ -447,6 +461,7 @@ footer .logo { font-size: 34px; }
       <div class="claquete rola"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h16v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-9Z"/><path d="m4 10-.6-3.3a1.5 1.5 0 0 1 1.2-1.7L17.4 2.7a1.5 1.5 0 0 1 1.7 1.2L19.7 7 4 10ZM8.5 4.5l2 4M13.5 3.6l2 4"/></svg></div>
       <p class="tag rola" style="margin-top:22px">Estreia de lançamento</p>
       <h2 class="titulo rola">Escolha o seu acesso à <span class="red">Fil&amp;Soc</span></h2>
+      <p class="promo-tempo" id="promo-tempo" hidden>A promoção encerra em <b id="promo-relogio">00:00:00</b></p>
     </div>
     <div class="col col--wide">
       <div class="planos">
@@ -455,6 +470,7 @@ footer .logo { font-size: 34px; }
           <div class="preco"><div class="valor"><span>R$</span><span>10</span><span>,00</span></div><p>pagamento único</p></div>
           <ul class="itens">
             <li>Todos os documentários e filmes</li>
+            <li class="alerta">Documentários com anúncios</li>
             <li>Catálogo completo estilo streaming</li>
             <li>Pronto para projetar na sala</li>
             <li>Acesso vitalício</li>
@@ -555,6 +571,10 @@ footer .logo { font-size: 34px; }
   </div>
 </div>
 
+<div class="compra-aviso" id="compra-aviso" role="status" aria-live="polite" hidden>
+  <span class="compra-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.5 12h12L22 7H6"/></svg></span>
+  <div><b id="compra-nome"></b><span id="compra-txt"></span></div>
+</div>
 <script>
 /* ===== EDITE AQUI =====
    checkoutBasico / checkoutCompleto: links de compra da Wiven de cada plano.
@@ -565,6 +585,9 @@ const CONFIG = {
   checkoutBasicoComBonus: '',  // Básico + bônus, R$ 15,00 (oferecido na janela)
   checkoutCompleto: '',        // Plano Completo, R$ 19,90
   prazo: '',
+  // Avisos de compra no canto da tela. Coloque SÓ compras reais (primeiro nome e cidade),
+  // ex.: { nome: 'Ana', cidade: 'Recife', plano: 'Plano Completo' }. Vazio = os avisos não aparecem.
+  compras: [],
 };
 
 (function () {
@@ -590,16 +613,33 @@ const CONFIG = {
 
   var fim = CONFIG.prazo ? new Date(CONFIG.prazo).getTime() : NaN;
   var tempo = document.getElementById('barra-tempo'), txt = document.getElementById('barra-txt');
+  var promo = document.getElementById('promo-tempo'), relogio = document.getElementById('promo-relogio');
   if (!isNaN(fim)) {
     var dia = new Date(fim);
     txt.textContent = 'Oferta termina em ' + String(dia.getDate()).padStart(2, '0') + '/' + String(dia.getMonth() + 1).padStart(2, '0');
     tempo.hidden = false;
     (function tic() {
       var r = Math.max(0, fim - Date.now());
-      if (r === 0) { tempo.hidden = true; txt.textContent = 'Pagamento único · acesso imediato'; return; }
+      if (r === 0) { tempo.hidden = true; promo.hidden = true; txt.textContent = 'Pagamento único · acesso imediato'; return; }
       var h = Math.floor(r / 3600000), m = Math.floor(r % 3600000 / 60000), s = Math.floor(r % 60000 / 1000);
       tempo.textContent = (h > 99 ? Math.floor(h / 24) + 'd ' + String(h % 24).padStart(2, '0') : String(h).padStart(2, '0')) + ':' + String(m).padStart(2, '0') + (h > 99 ? '' : ':' + String(s).padStart(2, '0'));
+      promo.hidden = false;
+      relogio.textContent = (h > 99 ? Math.floor(h / 24) + 'd ' + String(h % 24).padStart(2, '0') + 'h ' + String(m).padStart(2, '0') + 'min' : String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0'));
       setTimeout(tic, 1000);
+    })();
+  }
+
+  // avisos de compra: mostra um por vez, só com o que estiver em CONFIG.compras
+  var lista = (CONFIG.compras || []).filter(function (c) { return c && c.nome; });
+  if (lista.length && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    var av = document.getElementById('compra-aviso'), k = 0;
+    (function mostra() {
+      var c = lista[k++ % lista.length];
+      document.getElementById('compra-nome').textContent = c.nome + (c.cidade ? ', de ' + c.cidade : '');
+      document.getElementById('compra-txt').textContent = 'garantiu o ' + (c.plano || 'acesso à Fil&Soc');
+      av.hidden = false; av.style.animation = 'none'; void av.offsetWidth; av.style.animation = '';
+      setTimeout(function () { av.hidden = true; }, 5000);
+      setTimeout(mostra, 14000);
     })();
   }
 })();
