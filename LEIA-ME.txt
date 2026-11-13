@@ -1,0 +1,23 @@
+FIL&SOC · VERSÃO REVISADA (kits + checkout + demonstração)
+
+PUBLICAR
+- Suba a pasta inteira na Vercel, no lugar da atual (index.html, capas, imagens, video).
+- original.html é a versão anterior, intacta, para comparação. Ela abre em /original.html.
+
+VÍDEO DE DEMONSTRAÇÃO
+- Salve o arquivo como video/demonstracao.mp4 (MP4, vídeo H.264, áudio AAC, "faststart").
+- A seção "Veja a Fil&Soc em funcionamento" só aparece no site quando esse arquivo existe.
+- Para ver a seção antes do vídeo chegar: abra index.html?demo=1 (o player mostra a capa; ao tocar, avisa que o arquivo falta).
+- A tela da moldura assume a proporção do vídeo (vertical, entre 9:21 e 5:6). Nada é cortado.
+- A capa usa capas/cycgDWZPMsE.jpg. Para usar um quadro do vídeo, troque o src da <img> dentro de .demo-capa.
+
+EVENTOS (Meta Pixel + dataLayer)
+- clique_planos / CliquePlanos: clique nos botões que levam à seção de kits (origem: hero, dores, demo, final).
+- ir_checkout / InitiateCheckout: clique que abre o checkout. Traz kit (basico | completo), valor, content_ids e event_id.
+- Um mesmo toque não dispara o mesmo evento duas vezes (janela de 1,5 s).
+- Todos os eventos trazem variante = "kits-v2".
+
+COMPARAR VERSÃO ATUAL x REVISADA
+- Mande metade do tráfego para / e metade para /original.html (campanhas ou anúncios separados, com utm_content diferente).
+- No painel da Wiven: vendas aprovadas e receita líquida por utm_content. Visitas: do analytics/Pixel (PageView) de cada URL.
+- Receita líquida por visita = receita líquida aprovada ÷ visitas de cada versão. Compare com amostra suficiente.
